@@ -10,11 +10,14 @@ curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
 curl_setopt($curl, CURLOPT_HEADER, FALSE);
 curl_setopt($curl, CURLOPT_USERPWD, $consumerKey . ':' . $consumerSecret);
+
+curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 120);
+curl_setopt($curl, CURLOPT_TIMEOUT, 120);
+
 $result = curl_exec($curl);
 $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-echo $result;
-echo "abdi";
-//$result = json_decode($result);
+
+$result = json_decode($result);
 // ASSIGN ACCESS TOKEN TO A VARIABLE
-//$access_token = $result->access_token;
+echo  $access_token = $result->access_token;
 curl_close($curl);
